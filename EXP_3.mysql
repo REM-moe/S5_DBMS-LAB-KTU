@@ -78,3 +78,11 @@ DESC Book_author;
 ALTER TABLE Book ADD 
 	FOREIGN KEY(Publisher_id) 
 	REFERENCES  Publisher(Publisher_id);
+
+ALTER TABLE Book ADD FOREIGN KEY(Publisher_id) REFERENCES Language(Language_id);
+
+ALTER TABLE Author ADD UNIQUE(email);
+
+ALTER TABLE Author ADD UNIQUE(Ph_no);
+
+ALTER TABLE Book_author ADD Author_id INT;
