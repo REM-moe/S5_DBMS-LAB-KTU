@@ -12,3 +12,6 @@ after source edit file as request
 ```
 mysql> ./filename_.txt
 ```
+```
+or you can run code manually by copy and paste
+```
