@@ -105,4 +105,12 @@ ALTER TABLE Member ADD COLUMN Last_name VARCHAR(255);
 
 ALTER TABLE Member RENAME COLUMN Name TO First_name;
 
-<pre>CREATE INDEX Member ON Member(First_name, Last_name);</pre>
+CREATE INDEX Member ON Member(First_name, Last_name);
+
+ALTER TABLE Member ADD COLUMN Country VARCHAR(255);
+
+ALTER TABLE Member ALTER Country SET DEFAULT "INDIA";
+
+ALTER TABLE Book_return  ADD FOREIGN KEY(Issued_id) REFERENCES Book_issued(Issued_id);
+
+SHOW INDEX FROM Member;
