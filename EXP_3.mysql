@@ -1,0 +1,70 @@
+use LIBRARY_CSEC;
+
+CREATE TABLE Book (
+                Book_id INT NOT NULL,
+                Title VARCHAR(255) NOT NULL,
+                MRP FLOAT NOT NULL,
+                Language_id  INT NOT NULL,
+                Publisher_id INT NOT NULL,
+                Publisher_date DATE,
+                PRIMARY KEY(Book_id)
+        );
+DESC Book;
+
+CREATE TABLE Author (
+                Author_id INT NOT NULL,
+                Name VARCHAR(255) NOT NULL,
+                email VARCHAR(255),
+                Ph_no VARCHAR(10) NOT NULL,
+                PRIMARY KEY(Author_id)
+        );
+DESC Author;
+
+CREATE TABLE Publisher(
+                Publisher_id INT NOT NULL,
+                Name VARCHAR(255) NOT NULL,
+                Address VARCHAR(255),
+                PRIMARY KEY(Publisher_id)
+        );
+DESC Publisher;
+
+CREATE TABLE Member(
+                Member_id INT NOT NULL,
+                Name VARCHAR(255) NOT NULL,
+                Branch_code INT NOT NULL,
+                Roll_no INT NOT NULL,
+                Ph_no VARCHAR(10) NOT NULL,
+                PRIMARY KEY(Member_id)
+        );
+DESC Member;
+
+CREATE TABLE Book_issued(
+                Issued_id INT NOT NULL,
+                date_of_issue DATE NOT NULL,
+                book_id INT NOT NULL,
+                Member_id INT NOT NULL,
+                Status VARCHAR(1),
+                PRIMARY KEY(Issued_id)
+        );
+DESC Book_issued;
+
+CREATE TABLE Book_return(
+                Issued_id INT NOT NULL,
+                Actual_date_of_return DATE NOT NULL,
+                Late_days INT NOT NULL
+        );
+DESC Book_return;
+
+CREATE TABLE Language(
+                Language_id INT NOT NULL,
+                Name VARCHAR(255) NOT NULL,
+                PRIMARY KEY(Language_id)
+        );
+DESC Language;
+
+CREATE TABLE Late_fee(
+                from_days INT,
+                to_days INT,
+                Amount FLOAT NOT NULL
+        );
+DESC Late_fee;
