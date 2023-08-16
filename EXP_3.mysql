@@ -68,3 +68,9 @@ CREATE TABLE Late_fee(
                 Amount FLOAT NOT NULL
         );
 DESC Late_fee;
+
+CREATE TABLE Book_author(
+	    Book_id INT NOT NULL,
+	    FOREIGN KEY (Book_id) REFERENCES Book(BooK_ID)
+    );
+DESC Book_author;
