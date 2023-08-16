@@ -114,3 +114,8 @@ ALTER TABLE Member ALTER Country SET DEFAULT "INDIA";
 ALTER TABLE Book_return  ADD FOREIGN KEY(Issued_id) REFERENCES Book_issued(Issued_id);
 
 SHOW INDEX FROM Member;
+
+DROP INDEX Member ON Member;
+
+SHOW INDEX Member FROM Member;
+
