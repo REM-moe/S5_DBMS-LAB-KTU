@@ -104,3 +104,5 @@ ALTER TABLE Member ADD CHECK(College =  'VJEC');
 ALTER TABLE Member ADD COLUMN Last_name VARCHAR(255);
 
 ALTER TABLE Member RENAME COLUMN Name TO First_name;
+
+<pre>CREATE INDEX Member ON Member(First_name, Last_name);</pre>
