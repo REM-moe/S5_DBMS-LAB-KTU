@@ -121,3 +121,5 @@ DROP INDEX Member ON Member;
 
 SHOW INDEX Member FROM Member;
 
+ALTER TABLE Member DROP CHECK CHK_Age;
+
