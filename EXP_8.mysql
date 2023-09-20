@@ -1,0 +1,54 @@
+create table EMPLOYEE(
+        employee_id int,
+        first_name varchar(20),
+        last_name varchar(20),
+        date_of_joining date,
+        designation varchar(20),
+        salary float,
+        department_id int
+        );
+
+insert into EMPLOYEE values(001,"JOHN","WICK","2007-05-12","MANAGER",50000,932);
+insert into EMPLOYEE values(002,"ABRAHAM","SING","2004-09-29","SYSTEM ENGINEER",39000,777);
+insert into EMPLOYEE values(002,"JOHN","CENA","2010-06-21","IT ANALYST",48000,790);
+insert into EMPLOYEE values(002,"RANDY","ORTON","2008-12-22","CONSULTANT",20000, 787);
+insert into EMPLOYEE values(002,"RONALD","MONTY","2004-01-28","SYSTEMS ENGINEER",8000,555);
+
+SELECT * FROM EMPLOYEE;
+
+SELECT * 
+FROM EMPLOYEE
+ORDER BY first_name ASC;
+
+SELECT * 
+FROM EMPLOYEE 
+ORDER BY salary DESC;
+
+SELECT department_id, COUNT(*)
+FROM EMPLOYEE
+GROUP BY department_id;
+
+SELECT department_id, AVG(salary) AS avg_sal
+FROM EMPLOYEE
+GROUP BY department_id;
+
+SELECT year(date_of_joining) AS joining_year, COUNT(*) as employee_count 
+FROM EMPLOYEE
+GROUP BY joining_year;
+
+SELECT month(date_of_joining) AS joining_month, COUNT(*) AS employee_count
+FROM EMPLOYEE
+GROUP BY joining_month;
+
+SELECT  COUNT(*) AS employee_no
+FROM EMPLOYEE
+WHERE first_name LIKE "A%";
+
+SELECT COUNT(*) AS employee_no 
+FROM EMPLOYEE 
+WHERE last_name LIKE "%y";
+
+SELECT designation, COUNT(employee_id)
+FROM EMPLOYEE
+GROUP BY designation
+HAVING AVG(salary)>10000;
