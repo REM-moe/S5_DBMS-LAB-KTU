@@ -1,0 +1,21 @@
+desc CUSTOMERS;
+
+SELECT *FROM CUSTOMERS;
+
+select UPPER(Name) from CUSTOMERS;
+
+select LOWER(Address) from CUSTOMERS;
+
+select cust_id, LTRIM(Name), Age, LTRIM(Address) from CUSTOMERS;
+
+select cust_id, RTRIM(Name), Age, RTRIM(Address) from CUSTOMERS;
+
+SELECT CONCAT(Name, Address) FROM CUSTOMERS;
+
+SELECT SUBSTRING(Name, 1, 3) From CUSTOMERS;
+
+SELECT REPLACE("MATHEW", "TH", "HT");
+
+SELECT NOW();
+
+SELECT ROUND(13.61);
