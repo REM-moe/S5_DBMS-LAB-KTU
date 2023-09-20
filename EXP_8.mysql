@@ -42,7 +42,7 @@ GROUP BY joining_month;
 
 SELECT  COUNT(*) AS employee_no
 FROM EMPLOYEE
-WHERE first_name LIKE "A%";
+WHERE first_name LIKE "A%" ;
 
 SELECT COUNT(*) AS employee_no 
 FROM EMPLOYEE 
