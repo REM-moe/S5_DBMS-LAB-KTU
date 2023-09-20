@@ -1,0 +1,35 @@
+create table Member(
+        Member_id int primary key not null,
+        Name varchar(20) not null,
+        Branch_code int not null,
+        Roll_No int not null,
+        Email_Id varchar(20),
+        Date_Of_Join varchar(20) not null,
+        Phone_No int not null,
+        Status varchar(20) not null
+        );
+
+DESC Member;
+
+INSERT INTO Member values(200,"asasas",2,32,"sa@123","13/04/23",12344,"active");
+INSERT INTO Member values(205,"aasu",3,33,"assau@123","12/04/23",13344,"active");
+INSERT INTO Member values(208,"sassa",4,34,"sasasassas@123","12/03/23",13342,"active");
+INSERT INTO Member values(209,"dmm",5,35,"dmddm@123","11/03/22",13372,"active");
+INSERT INTO Member values(210,"adasas",6,36,"adadad@123","18/03/22",16372,"active");
+
+SELECT *FROM Member;
+
+delete from Member where Member_id=210;
+delete from Member where Member_id=210;
+
+SELECT *FROM Member;
+
+update Member set Status="INACTIVE" where Member_id=200;
+update Member set Status="INACTIVE" where Member_id=208;
+update Member set Status="INACTIVE" where Member_id=209;
+
+SELECT *FROM Member;
+
+delete from Member where Status="INACTIVE";
+
+SELECT *FROM Member;
