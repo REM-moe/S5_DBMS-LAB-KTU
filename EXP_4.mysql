@@ -1,0 +1,68 @@
+CREATE DATABASE MYDB;
+USE MYDB;
+CREATE TABLE Publisher(
+        Publisher_id INT(10) NOT NULL, 
+        Name VARCHAR(40) NOT NULL,
+        Address VARCHAR(20) NOT NULL,
+        PRIMARY KEY (Publisher_id)
+        );
+
+CREATE TABLE LANGUAGE(
+        Language_id INT NOT NULL,
+        Name VARCHAR(40) NOT NULL,
+        PRIMARY KEY(Language_id)
+        );
+CREATE TABLE MEMBER(
+        Member_id INT NOT NULL,
+        Name VARCHAR(40) NOT NULL,
+        Branch_code INT NOT NULL,
+        Roll_no INT NOT NULL,
+        Email_id VARCHAR(40),
+        Date_of_join VARCHAR(40) NOT NULL,
+        Phone_no INT NOT NULL,
+        Status VARCHAR(40) NOT NULL,
+        PRIMARY KEY(Member_id)
+        );
+
+DESC MEMBER;
+
+SET GLOBAL local_infile=1;
+
+INSERT INTO 
+Publisher(Publisher_id,Name,Address)
+VALUES (7459,'abc','aaaaa'),
+       (7234,'acb','bbbbb'),
+       (7732,'cba','cccc');
+
+INSERT INTO 
+Language(Language_id,Name) VALUES 
+        (1122,"Malayalam"),
+        (1133,"English");
+
+INSERT INTO
+Member(Member_id,Name,Branch_code,Roll_no,Email_id,Date_of_join,Phone_no,Status)
+VALUES 
+        (112,"Damon",001,28,"as@gmail.com","22/11/2021",7984 237,"Active"),
+        (212,"Stephan",005,28,"steph@gmail.com","26/04/2022",798427,"Active"),
+        (200,"ash",020,35,"hash@gmail.com","10/06/2010",826776,"Inactive");
+
+SELECT * FROM Member;
+
+CREATE TABLE Book(
+        Book_id INT(11) NOT NULL,
+        Title VARCHAR(20) NOT NULL,
+        MRP INT(11) NOT NULL,
+        Published_Date VARCHAR(20) NOT NULL,
+        Volume INT(11) NOT NULL,
+        Status VARCHAR(20) NOT NULL,
+        Book_issue VARCHAR(20) NOT NULL,
+        Language_id INT(11) NOT NULL,
+        Publisher_id INT(11) NOT NULL,
+        PRIMARY KEY (Book_id)
+        );
+
+DESC Book;
+
+LOAD DATA LOCAL INFILE "/location/location/file.csv" INTO TABLE Book FIELDS TERMINATED BY "," ENCLOSED BY """ LINES TERMINATED BY "\n" IGNORE 1LINES;
+
+SELECT * FROM Book;
