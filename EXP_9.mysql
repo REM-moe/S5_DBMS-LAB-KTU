@@ -1,1 +1,33 @@
+CREATE DATABASE mydb_csec;
+USE mydb_csec;
+SELECT * 
+FROM EMPLOYEE;
 
+SELECT *
+FROM DEPARTMENT;
+
+select first_name, salary 
+from 
+EMPLOYEE
+where first_name LIKE "a%" and salary > (SELECT AVG(salary) from EMPLOYEE);
+
+select *
+from EMPLOYEE 
+where designation in (
+                      select * 
+                      from employee 
+                      where first_name = “Arun”
+                      );
+
+select * 
+from EMPLOYEE
+where salary in (
+                select MAX(salary ) 
+                from EMPLOYEE
+                );
+
+SELECT * 
+FROM EMPLOYEE INNER JOIN dept ON emp.dept_id = dept.dept_id;
+
+select * 
+from EMPLOYEE where salary > (select AVG(salary) from EMPLOYEE);
