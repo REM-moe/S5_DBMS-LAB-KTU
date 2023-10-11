@@ -19,7 +19,7 @@ CREATE VIEW salespersons AS
 SELECT salesman_id, name, city
 FROM sales;
 
-INSERT INTO sales (salesman_id, name, city, commission)
+INSERT INTO salespersons (salesman_id, name, city, commission)
 VALUES (5, 'Jane Doe', 'San Francisco', 20.00);
 
 SELECT *
@@ -34,7 +34,7 @@ FROM salespersons;
 SELECT * FROM sales_newyork;
 Empty set (0.00 sec)
 
-INSERT INTO sales (salesman_id, name, city, commission)
+INSERT INTO salespersons (salesman_id, name, city, commission)
 VALUES (2, 'chris bumstead', 'New York City', 15.00),
        (3, 'arnold', 'San Francisco', 20.00);
 
