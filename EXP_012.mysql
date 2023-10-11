@@ -1,0 +1,86 @@
+CREATE DATABSE SALES;
+
+USE SALES;
+
+CREATE TABLE sales (
+    salesman_id INT NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    city VARCHAR(255) NOT NULL,
+    commission DECIMAL(10,2) NOT NULL,
+    PRIMARY KEY (salesman_id)
+);
+
+CREATE VIEW sales_newyork AS
+SELECT *
+FROM sales
+WHERE city = 'New York City';
+
+CREATE VIEW salespersons AS
+SELECT salesman_id, name, city
+FROM sales;
+
+INSERT INTO sales (salesman_id, name, city, commission)
+VALUES (5, 'Jane Doe', 'San Francisco', 20.00);
+
+SELECT *
+FROM salespersons;
++-------------+----------+---------------+
+| salesman_id | name     | city          |
++-------------+----------+---------------+
+|           5 | Jane Doe | San Francisco |
++-------------+----------+---------------+
+1 row in set (0.00 sec)
+
+SELECT * FROM sales_newyork;
+Empty set (0.00 sec)
+
+INSERT INTO sales (salesman_id, name, city, commission)
+VALUES (2, 'chris bumstead', 'New York City', 15.00),
+       (3, 'arnold', 'San Francisco', 20.00);
+
+SELECT * FROM salespersons;
++-------------+----------------+---------------+
+| salesman_id | name           | city          |
++-------------+----------------+---------------+
+|           2 | chris bumstead | New York City |
+|           3 | arnold         | San Francisco |
+|           5 | Jane Doe       | San Francisco |
++-------------+----------------+---------------+
+3 rows in set (0.00 sec)
+
+ SELECT * FROM sales_newyork;
++-------------+----------------+---------------+------------+
+| salesman_id | name           | city          | commission |
++-------------+----------------+---------------+------------+
+|           2 | chris bumstead | New York City |      15.00 |
++-------------+----------------+---------------+------------+
+1 row in set (0.01 sec)
+
+CREATE VIEW customer_count AS
+SELECT city, COUNT(*) AS customer_count
+FROM sales
+GROUP BY city;
+
+SELECT * FROM customer_count;
++---------------+----------------+
+| city          | customer_count |
++---------------+----------------+
+| New York City |              1 |
+| San Francisco |              2 |
++---------------+----------------+
+2 rows in set (0.00 sec)
+
+DELETE FROM sales
+WHERE salesman_id = 5;
+
+SELECT * FROM salespersons;
++-------------+----------------+---------------+
+| salesman_id | name           | city          |
++-------------+----------------+---------------+
+|           2 | chris bumstead | New York City |
+|           3 | arnold         | San Francisco |
++-------------+----------------+---------------+
+
+DROP VIEW salespersons;
+
+DROP VIEW sales_newyork;
