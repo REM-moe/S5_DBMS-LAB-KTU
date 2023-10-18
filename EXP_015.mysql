@@ -1,0 +1,66 @@
+select * from EMPLOYEE;
++-------------+------------+-----------+-----------------+-------------+--------+---------------+
+| employee_id | first_name | last_name | date_of_joining | designation | salary | department_id |
++-------------+------------+-----------+-----------------+-------------+--------+---------------+
+|           1 | rajiii     | JAISON    | 2/6/21          | MANAGER     |  30000 |             5 |
+|           2 | raggu      | JOSEPH    | 22/6/17         | SUPERVISOR  |  90000 |             5 |
+|           3 | MALAVIKA   | SURESH    | 15/2/11         | MANAGER     | 100000 |             5 |
+|           4 | NAdiya     | SURESH    | 25/5/13         | TEAM LEADER |  80000 |            10 |
+|           5 | ARJUN      | kumari    | 31/3/23         | TEAM LEADER |  25000 |            10 |
++-------------+------------+-----------+-----------------+-------------+--------+---------------+
+
+delimiter &&;
+create procedure emp_procedure()
+    begin
+    select * from EMPLOYEE where salary>35000;
+    end &&;
+
+delimiter ;
+call emp_procedure();
++-------------+------------+-----------+-----------------+-------------+--------+---------------+
+| employee_id | first_name | last_name | date_of_joining | designation | salary | department_id |
++-------------+------------+-----------+-----------------+-------------+--------+---------------+
+|           2 | raji       | JOSEPH    | 22/6/17         | SUPERVISOR  |  90000 |             5 |
+|           3 | MALAVIKA   | SURESH    | 15/2/11         | MANAGER     | 100000 |             5 |
+|           4 | NadiyA     | SURESH    | 25/5/13         | TEAM LEADER |  80000 |            10 |
++-------------+------------+-----------+-----------------+-------------+--------+---------------+
+
+delimiter &&;
+create procedure emp_detail(IN sal int,IN dep int)
+    begin
+    select employee_id,first_name,last_name from EMPLOYEE where salary>sal and department_id=dep;
+    end &&;
+
+delimiter ;
+call emp_detail(90000,5);
++-------------+------------+-----------+
+| employee_id | first_name | last_name |
++-------------+------------+-----------+
+|           3 | MALAVIKA   | SURESH    |
++-------------+------------+-----------+
+
+Query OK, 0 rows affected (0.00 sec)
+mysql> delimiter &&;
+mysql> create procedure emp_count(OUT count_emp INT)
+    -> begin
+    -> select count(*) into count_emp from EMPLOYEE;
+    -> end &&;
+
+mysql> delimiter ;
+
+mysql> call emp_count(@M);
+
+select @M;
++------+
+| @M   |
++------+
+|    5 |
++------+
+
+drop procedure emp_procedure;
+
+drop procedure emp_count;
+
+drop procedure emp_detail;
+
+show procedure status where db="dbname";
