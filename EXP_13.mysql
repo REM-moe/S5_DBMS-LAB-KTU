@@ -1,0 +1,31 @@
+CREATE TABLE STUDENT (
+    Roll_no int NOT NULL,
+    Student_Name varchar(29) NOT NULL,
+    mark1 int NOT NULL,
+    mark2 int NOT NULL,
+    mark3 int,
+    primary key(Roll_no)
+);
+
+INSERT INTO STUDENT VALUES (7459, 'abhay', 33, 44, 55)
+INSERT INTO STUDENT VALUES (7234, 'JIMBRO', 66, 77, 88)
+INSERT INTO STUDENT VALUES (7732, 'BALE', 77, 88, 99)
+
+SELECT * FROM STUDENT
+--add moderatiomn of 10 marks to mark1
+DECLARE
+  stud_rollno STUDENT.ROLL_NO%TYPE;
+  stud_name STUDENT.STUDENT_NAME%TYPE;
+  total STUDENT.MARK1%TYPE;
+  moderation NUMBER := 10;
+BEGIN
+  SELECT ROLL_NO, STUDENT_NAME, (mark1 + mark2 + mark3) INTO stud_rollno, stud_name, total
+  FROM STUDENT
+  WHERE ROLL_NO = :rollno;
+  IF total < 100 THEN
+    UPDATE STUDENT SET MARK1 = total + moderation WHERE ROLL_NO = stud_rollno;
+    DBMS_OUTPUT.PUT_LINE('rollno :' || stud_rollno);
+    DBMS_OUTPUT.PUT_LINE('studentname:' || stud_name);
+    DBMS_OUTPUT.PUT_LINE('moderation granted');
+  END IF;
+END
