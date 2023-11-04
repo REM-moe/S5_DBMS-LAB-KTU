@@ -1,0 +1,40 @@
+create table bank_account (
+accno int primary key,
+name varchar(15),
+balance number(8,2)
+);
+
+insert all
+into bank_account values
+(5001, 'Sasha', 55000)
+into bank_account values
+(5002, 'Connie', 23000)
+into bank_account values
+(5003, 'Thomas', 44500)
+into bank_account values
+(5004, 'Mike', 25000)
+into bank_account values
+(5005, 'Jean', 38600)
+select * from dual;
+create table account_interest (
+accno int primary key,
+interest number(8, 2)
+);
+
+declare
+cursor acc_cursor is
+select * from bank_account;
+acc_record bank_account%rowtype;
+interest_var number(8,2);
+begin
+
+open acc_cursor;
+loop
+fetch acc_cursor into acc_record;
+exit when acc_cursor%notfound;
+interest_var := acc_record.balance * 0.08;
+insert into account_interest values
+(acc_record.accno, interest_var);
+end loop;
+close acc_cursor;
+end;
