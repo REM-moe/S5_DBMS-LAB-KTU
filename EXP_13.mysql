@@ -29,3 +29,34 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('moderation granted');
   END IF;
 END
+
+declare
+stud_rollno student.ROLL_NO%type;
+stud_name student.STUDENT_NAME%type;
+total student.mark1%type;
+begin
+select ROLL_NO,STUDENT_NAME,(mark1 + mark2 + mark3) into
+stud_rollno,stud_name,total from student where ROLL_NO =:rollno;
+if total>250 then
+dbms_output.put_line('rollno :'||stud_rollno);
+dbms_output.put_line('studentname:'||stud_name);
+dbms_output.put_line('Distinction');
+elsif (total>200 AND total<250) then
+dbms_output.put_line('rollno :'||stud_rollno);
+dbms_output.put_line('studentname:'||stud_name);
+dbms_output.put_line('First class');
+
+elsif (total>150 AND total<200) then
+dbms_output.put_line('rollno :'||stud_rollno);
+dbms_output.put_line('studentname:'||stud_name);
+dbms_output.put_line('Second class');
+elsif (total>100 AND total<150) then
+dbms_output.put_line('rollno :'||stud_rollno);
+dbms_output.put_line('studentname:'||stud_name);
+dbms_output.put_line('Third class');
+elsif (total<100) then
+dbms_output.put_line('rollno :'||stud_rollno);
+dbms_output.put_line('studentname:'||stud_name);
+dbms_output.put_line('Fail');
+end if;
+end;
