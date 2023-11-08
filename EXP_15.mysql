@@ -1,0 +1,41 @@
+CREATE TABLE EMPLOYEE(
+  EMP_ID INT,
+  SALARY INT,
+  E_Name VARCHAR(20)
+);
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO EMPLOYEE (EMP_ID, SALARY, E_Name)
+VALUES (1, 50000, 'John Doe');
+INSERT INTO EMPLOYEE (EMP_ID, SALARY, E_Name)
+VALUES (2, 60000, 'Jane Smith');
+INSERT INTO EMPLOYEE (EMP_ID, SALARY, E_Name)
+VALUES (3, 70000, 'Peter Jones');
+INSERT INTO EMPLOYEE (EMP_ID, SALARY, E_Name)
+VALUES (4, 80000, 'Mary Brown');
+INSERT INTO EMPLOYEE (EMP_ID, SALARY, E_Name)
+VALUES (5, 90000, 'David Williams');
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE OR REPLACE PACKAGE EMPLOYEE_SALARY AS
+  PROCEDURE FIND_SALARY(EID IN EMPLOYEE.EMP_ID%TYPE);
+END;
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE OR REPLACE PACKAGE BODY EMPLOYEE_SALARY AS
+  PROCEDURE FIND_SALARY(EID IN EMPLOYEE.EMP_ID%TYPE) IS
+    E_SAL EMPLOYEE.SALARY%TYPE;
+  BEGIN
+    SELECT SALARY INTO E_SAL FROM EMPLOYEE WHERE EMP_ID = EID;
+    IF FOUND THEN
+      DBMS_OUTPUT.PUT_LINE('SALARY: ' || E_SAL);
+    ELSE
+      DBMS_OUTPUT.PUT_LINE('Employee with ID ' || EID || ' not found');
+    END IF;
+  END FIND_SALARY;
+END EMPLOYEE_SALARY;
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DECLARE
+  E EMPLOYEE.EMP_ID%TYPE;
+BEGIN
+  E := :EMPLOYEE_NUMBER; -- Assign the input value to the variable
+  EMPLOYEE_SALARY.FIND_SALARY(E); -- Call the FIND_SALARY procedure
+END;
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
