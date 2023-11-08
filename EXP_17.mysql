@@ -1,0 +1,52 @@
+DECLARE
+E_ID EMPLOYEE.EMP_ID%TYPE := :EMP_ID;
+E_NAME EMPLOYEE.E_Name%TYPE;
+E_SAL EMPLOYEE.SALARY%TYPE;
+BEGIN
+SELECT E_Name, SALARY INTO E_NAME, E_SAL FROM EMPLOYEE WHERE EMP_ID
+= E_ID;
+DBMS_OUTPUT.PUT_LINE('NAME : '|| E_NAME);
+DBMS_OUTPUT.PUT_LINE('SALARY : '|| E_SAL);
+EXCEPTION
+WHEN NO_DATA_FOUND THEN
+DBMS_OUTPUT.PUT_LINE('NO EMPLOYEE WITH THE GIVEN ID. ');
+WHEN OTHERS THEN
+DBMS_OUTPUT.PUT_LINE('ERROR');
+END;
+
+______________________________________________________________________________________________________________________________________________________________________________________
+OUTPUT
+NAME : John Doe
+SALARY : 50000
+Statement processed.
+0.01 seconds
+______________________________________________________________________________________________________________________________________________________________________________________
+
+DECLARE
+E_ID EMPLOYEE.EMP_ID%TYPE := :EMP_ID;
+
+E_NAME EMPLOYEE.E_NAME%TYPE;
+E_SAL EMPLOYEE.SALARY%TYPE;
+MY_EXCEPTION EXCEPTION;
+BEGIN
+IF E_ID > 100 THEN
+RAISE MY_EXCEPTION;
+ELSE
+SELECT E_Name, SALARY INTO E_NAME, E_SAL FROM EMPLOYEE WHERE EMP_ID = E_ID;
+DBMS_OUTPUT.PUT_LINE('NAME : '|| E_NAME );
+DBMS_OUTPUT.PUT_LINE('SALARY : '|| E_SAL);
+END IF;
+EXCEPTION
+WHEN MY_EXCEPTION THEN
+DBMS_OUTPUT.PUT_LINE('EMPLOYEE ID MUST BE LESSER THAN
+100'); WHEN OTHERS THEN
+DBMS_OUTPUT.PUT_LINE('ERROR');
+END;
+______________________________________________________________________________________________________________________________________________________________________________________
+OUTPUT
+EMPLOYEE ID MUST BE LESSER THAN
+100
+Statement processed.
+0.01 seconds
+______________________________________________________________________________________________________________________________________________________________________________________
+
