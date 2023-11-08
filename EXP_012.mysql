@@ -24,6 +24,7 @@ VALUES (5, 'Jane Doe', 'San Francisco', 20.00);
 
 SELECT *
 FROM salespersons;
+
 +-------------+----------+---------------+
 | salesman_id | name     | city          |
 +-------------+----------+---------------+
@@ -39,6 +40,7 @@ VALUES (2, 'chris bumstead', 'New York City', 15.00),
        (3, 'arnold', 'San Francisco', 20.00);
 
 SELECT * FROM salespersons;
+
 +-------------+----------------+---------------+
 | salesman_id | name           | city          |
 +-------------+----------------+---------------+
@@ -49,6 +51,7 @@ SELECT * FROM salespersons;
 3 rows in set (0.00 sec)
 
  SELECT * FROM sales_newyork;
+
 +-------------+----------------+---------------+------------+
 | salesman_id | name           | city          | commission |
 +-------------+----------------+---------------+------------+
@@ -62,6 +65,7 @@ FROM sales
 GROUP BY city;
 
 SELECT * FROM customer_count;
+
 +---------------+----------------+
 | city          | customer_count |
 +---------------+----------------+
@@ -74,6 +78,7 @@ DELETE FROM sales
 WHERE salesman_id = 5;
 
 SELECT * FROM salespersons;
+
 +-------------+----------------+---------------+
 | salesman_id | name           | city          |
 +-------------+----------------+---------------+
